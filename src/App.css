@@ -1,0 +1,30 @@
+.jumbotron img {
+    margin-top: 60px; 
+    height: 80vh;
+    width: 100%;
+    object-fit: cover;
+    object-position: center; 
+}
+
+.jumbotron {
+    position: relative;
+    display: flex;
+    justify-content: center; 
+}
+
+.jumbotron-text {
+    position: absolute;
+    top: 50vh; 
+    text-transform: uppercase;
+    background: white; 
+    font-family: 'Roboto';
+    font-weight: 900; 
+    font-size: 40px;
+    font-style: italic; 
+    padding: 5px 50px; 
+}
+
+.container {
+    width: 90%; 
+    margin: auto; 
+}

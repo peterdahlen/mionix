@@ -1,0 +1,70 @@
+.productSubHeader {
+    color: white; 
+    display: inline-block;
+    font-size: 25px;
+    font-weight: 900;
+    position: relative;
+    text-shadow: -5px 5px black;
+    font-style: italic;
+    z-index: 2; 
+    align-content: center; 
+}
+
+.productSubHeader:after {
+    color: black;
+    content: attr(data-text);
+    position: absolute;
+    -webkit-text-stroke: .15em black;
+    left: 0;
+    z-index: -2;
+    top: 0; 
+    font-size: 1em;
+}
+
+.color-selector {
+    margin-top: 10px; 
+    margin-bottom: 70px; 
+    display: flex;
+    justify-content: center; 
+}
+
+.color-selector > div {
+    margin: 5px; 
+}
+
+.color-select {
+    width: 2em;
+    height: 2em;
+    margin: 5px; 
+    position: relative;
+}
+
+.active::after {
+    background: #000; 
+    content: '';
+    left: 0; 
+    height: 5px; 
+    position: absolute;
+    top: calc(100% + 4px); 
+    width: 100%;  
+}
+
+.frosting {
+    background-color: #EF6079; 
+}
+
+.ice-cream {
+    background-color: #B1E4E3;
+}
+
+.french-fries {
+    background-color: #F0EC74;
+}
+
+.shark-fin {
+    background-color: #888B8D 
+}
+
+.black {
+    background-color: #000; 
+}

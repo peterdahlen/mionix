@@ -1,0 +1,42 @@
+.nav-buttons {
+    height: 50px; 
+    font-size: 12px; 
+    width: 100%;
+    bottom: 3%;
+    display: flex;
+    justify-content: center; 
+    position: absolute; 
+}
+
+.nav-bottons img {
+    margin-right: 100px; 
+}
+
+.slick-dots {
+    width: 100%;
+    bottom: 8%;
+    display: flex;
+    justify-content: center; 
+    position: absolute; 
+}
+
+button {
+    background: transparent; 
+    border: none;
+    font-size: 12px; 
+    background: black; 
+    text-align: center; 
+    font-style: italic; 
+    color:white;
+    padding: 10px;
+    position: absolute; 
+    top: 90%; 
+}
+
+.image-slider {
+    position: relative;
+}
+
+.next-button {
+    right: 0; 
+}

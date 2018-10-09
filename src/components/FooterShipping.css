@@ -1,0 +1,26 @@
+.sticky {
+    bottom: 0px;
+    width: 100%; 
+    height: 60px; 
+    position: fixed; 
+    background-color: #F2F2F2; 
+    z-index: 998; 
+}
+
+.shipping p {
+    font-size: 20px;
+    font-weight: 900; 
+    font-family: 'Roboto'; 
+    font-style: italic; 
+    text-align: center; 
+}
+
+.global {
+    font-weight: 300; 
+}
+
+.chat {
+    text-align: right; 
+    float: right; 
+    margin-right: 7px;  
+}

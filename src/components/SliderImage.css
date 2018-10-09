@@ -1,0 +1,49 @@
+.slider {
+    width: 90vw;
+    position: relative;
+    height: 70vh;
+}
+
+.slider-image {
+    margin-top: 5%;
+    margin-bottom: 5%; 
+    height: 70vh;
+    width: 100%;
+    object-fit: cover;
+    object-position: center; 
+}
+
+.usp-sticker {
+    top: 10%;
+    height: 250px; 
+    position: absolute;
+}
+
+.CTA {
+    position: relative;
+    bottom: 60%; 
+    display: flex;
+    justify-content: center;
+    flex-direction: column; 
+}
+
+h2 {
+    color: white;
+    font-size: 40px;
+    font-weight: 700;  
+    text-shadow: -4px 4px black;
+    font-style: italic; 
+    text-align: center; 
+}
+
+.CTA button {
+    background: black; 
+    margin: auto; 
+    text-align: center; 
+    color:white;
+    font-size: 20px;
+    font-weight: 700; 
+    display: flex;
+    justify-content: center;
+    position: relative; 
+}
