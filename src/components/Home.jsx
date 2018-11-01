@@ -3,6 +3,31 @@ import ImageSlider from './ImageSlider';
 import "../App.css"; 
 
 class Home extends Component {
+
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+          products: []
+        };
+      }
+
+    componentDidMount() {
+
+        fetch('http://localhost:4000/api/products')
+            .then(response => response.json())
+            .then(json => {
+                var items = json.map(function(prod) {
+                    var colors = prod.colors.map(function(color) {
+                        return {item: color.color, alt: color.alt};  
+                    });
+                    return (<ImageSlider key={prod._id} product={prod._id} items={colors}
+                    usp={"img/usp/usp-" + prod._id + ".png"} />);
+                    });
+                this.setState({products: items})
+            })
+        }
+      
     render() {
         return (
             <div className="App">
@@ -17,36 +42,7 @@ class Home extends Component {
 
                 <div className="container">
 
-                    <ImageSlider product="castor" items={[
-                                    { item: "frosting", alt: "Frosting"},
-                                    { item: "french-fries", alt: "French Fries"},
-                                    { item: "ice-cream", alt: "Ice Cream"}, 
-                                    { item: "black", alt: "Black"},
-                                    { item: "shark-fin", alt: "Shark-fin"}]}
-                                usp="img/usp/usp-castor.svg"/>
-                                
-                    <ImageSlider product="desk-pad" items={[
-                                    { item: "black", alt: "Black"},
-                                    { item: "french-fries", alt: "French Fries"},
-                                    { item: "frosting", alt: "Frosting"}, 
-                                    { item: "ice-cream", alt: "Ice Cream"}, 
-                                    { item: "shark-fin", alt: "Shark Fin"}]}
-                            usp="img/usp/usp-deskpad.png"/>
-
-                    <ImageSlider product="avior" items={[
-                                    { item: "black", alt: "Black"},
-                                    { item: "french-fries", alt: "French Fries"},
-                                    { item: "frosting", alt: "Frosting"}, 
-                                    { item: "ice-cream", alt: "Ice Cream"}, 
-                                    { item: "shark-fin", alt: "Shark Fin"}]}
-                            usp="img/usp/usp-avior.png"/>
-
-                    <ImageSlider product="long-pad" items={[
-                                    { item: "black", alt: "Black"},
-                                    { item: "french-fries", alt: "French Fries"},
-                                    { item: "frosting", alt: "Frosting"}, 
-                                    { item: "ice-cream", alt: "Ice Cream"}]}
-                            usp="img/usp/usp-long-pad.png"/>
+                    {this.state.products}
 
                 </div>
                         
