@@ -11,12 +11,12 @@ export default class SliderImage extends Component {
         return (
             <div className="slider">
                 <Link to={this.props.link}>
-                    <img className="slider-image" src={this.props.name} alt={this.props.alt} />
-                <img className="usp-sticker" src={this.props.usp} alt={this.props.alt} />
+                    <img className="slider-image" src={this.props.name} alt={this.props.alt} key={name}/>
+                    <img className="usp-sticker" src={this.props.usp} alt={this.props.alt} />
                 </Link>
                 <div className="CTA">
                     <h2>{name}</h2>
-                    <button><i class="fas fa-shopping-cart"></i> €59:99</button> 
+                    <button><i className="fas fa-shopping-cart"></i> €59:99</button> 
                 </div>
             </div>
         )

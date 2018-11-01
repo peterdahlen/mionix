@@ -29,7 +29,7 @@ export default class ImageSlider extends Component {
         var images = this.props.items.map(function(image) {
             var src = "img/" + product + "/" + image.item + "/lifestyle.jpg";
             var link = "./" + product + "-" + image.item
-            return <SliderImage name={src} alt={image.alt} usp={usp} link={link} product={product} />
+            return <SliderImage name={src} alt={image.alt} usp={usp} link={link} product={product} key={product}/>
         });
         return (
             <div className="image-slider">
