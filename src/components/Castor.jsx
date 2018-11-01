@@ -1,9 +1,28 @@
 import React, { Component } from 'react';
+import CompleteYourSetup from './CompleteYourSetup';
 import Colors from './Colors'; 
 import Awards from './Awards';
 import './Castor.css'; 
 
 class Castor extends Component {
+
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+          description: {}
+        };
+      }
+
+    componentDidMount() {
+
+        fetch('http://localhost:4000/api/descriptions/castor')
+            .then(response => response.json())
+            .then(json => {
+                console.log(json.descriptions[0]);
+                this.setState({description: json.descriptions[0]})
+            })
+        }
 
     render() {
 
@@ -13,25 +32,16 @@ class Castor extends Component {
         var angle = "img/castor/" + this.props.match.params.name + "/angle.jpg";
         var side = "img/castor/" + this.props.match.params.name + "/side.jpg";
 
-        var deskpadImg = "img/desk-pad/" + this.props.match.params.name + "/top.jpg";
-        var deskpadLink = "desk-pad-" + this.props.match.params.name;
-        var wei = "img/wei/" + this.props.match.params.name + "/top.jpg";
-        var longpadImg = "img/long-pad/" + this.props.match.params.name + "/top.jpg";
-        var longpadLink = "long-pad-" + this.props.match.params.name;
-
-        if (this.props.match.params.name === 'shark-fin') {
-            longpadImg = "img/long-pad/black/top.jpg"
-        }
-
-        if (this.props.match.params.name === 'shark-fin') {
-            longpadLink = "long-pad-black"
-        }
-
         var active = this.props.match.params.name; 
 
         return (
             <div>
+            
                 <img src={header} className="productHeader" alt="Castor"></img>
+
+                <div className="buyButton">
+                    <button>Buy</button>
+                </div>
            
                     <div className="container"> 
 
@@ -39,22 +49,22 @@ class Castor extends Component {
                             <div className="pure-u-md-1-2 pure-u-1 theProduct">
                             <div className="margin">
                                 <img src={top} className="productImage" alt="Castor top"></img>
-                                <div data-text="THE CASTOR" className="productTextHeader">
-                                    THE CASTOR
+                                <div data-text={this.state.description.caps01} className="productTextHeader">
+                                    {this.state.description.caps01}
                                 </div>
                                 <div className="productText">
-                                    <p>Making your desk look fresh is easy with the Mionix Castor. It's probably the best optical gaming mouse ever crafted.</p>
+                                    <p>{this.state.description.text01}</p>
                                 </div>
                             </div>
                             </div>
                             <div className="pure-u-md-1-2 pure-u-1 theProduct">
                             <div className="margin">
                                 <img src={angle} className="productImage" alt="Castor angle"></img>
-                                <div data-text="THE SHAPE" className="productTextHeader">
-                                    THE SHAPE
+                                <div data-text={this.state.description.caps02} className="productTextHeader">
+                                    {this.state.description.caps02}
                                 </div>
                                 <div className="productText">
-                                    <p>The ergonomic design for right handers with textured thumb grip and flawless ring and pinky finger grooves keeps your grip tight and always on target.</p>
+                                    <p>{this.state.description.text02}</p>
                                 </div>
                             </div>
                             </div>
@@ -63,11 +73,11 @@ class Castor extends Component {
                             <div className="pure-u-md-1-2 pure-u-1 theProduct center">
                                 <div className="margin">
                                 <img src={side} className="productImage" alt="Castor side"></img>
-                                    <div data-text="THE AWARDS" className="productTextHeader">
-                                        THE AWARDS
+                                    <div data-text={this.state.description.caps03} className="productTextHeader">
+                                    {this.state.description.caps03}
                                     </div>
                                     <div className="productText">
-                                        <p>With over 400 awards under its belt, the Castor keeps you one step ahead of the competition and looking fresh.</p>
+                                        <p>{this.state.description.text03}</p>
                                     </div>
                                 </div>
                             </div>
@@ -99,48 +109,10 @@ class Castor extends Component {
 
                         <Colors product="castor" active={active} colors={["frosting", "ice-cream", "french-fries", "shark-fin", "black"]}/>
 
-                        <div className="header">
-                            <div data-text="COMPLETE YOUR SETUP" className="productTextHeader">
-                                COMPLETE YOUR SETUP
-                            </div>
-                        </div>
-
-                        <div className="pure-g loadout">
-                            <div className="pure-u-md-1-3 pure-u-1">
-                                <div className="loadout-content">
-                                    <a href={deskpadLink}><img src={deskpadImg} alt="DeskPad"></img></a>
-                                    <div data-text="DeskPad" className="productSubHeader">
-                                        DeskPad
-                                    </div>
-                                    <div>
-                                        <button className="CTA-button"><i className="fas fa-shopping-cart"></i> €29:99</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="pure-u-md-1-3 pure-u-1">
-                                <div className="loadout-content">
-                                    <a href={longpadLink}>
-                                    <img src={longpadImg} alt="Longpad"></img></a>
-                                    <div data-text="Long-Pad" className="productSubHeader">
-                                        Long-Pad
-                                    </div>
-                                    <div>
-                                        <button className="CTA-button"><i className="fas fa-shopping-cart"></i> €19:99</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="pure-u-md-1-3 pure-u-1">
-                                <div className="loadout-content">
-                                    <img src={wei} alt="Wei"></img>
-                                    <div data-text="Wei" className="productSubHeader">
-                                        Wei
-                                    </div>
-                                    <div>
-                                        <button className="CTA-button"><i className="fas fa-shopping-cart"></i> €189:99</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <CompleteYourSetup products={[{ item: "desk-pad", name: "DeskPad", price: "€29.99" }, 
+                                                      { item: "wei", name: "Wei", price: "€189.99" }, 
+                                                      { item: "long-pad", name: "LongPad", price: "19.99" }]} 
+                                            color={active} />
 
                         <div className="software-firmware">                    
                                 <div>
