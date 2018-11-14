@@ -54,7 +54,6 @@ app.get('/api/descriptions/:name', function(req, res) {
     {text01: "$description_01", caps01: "$description_01_caps", 
     text02: "$description_02", caps02: "$description_02_caps", 
     text03: "$description_03", caps03: "$description_03_caps"} } } }]).then(descriptions => {
-      console.log(descriptions);
       res.json(descriptions[0]);
   })
 });
@@ -62,9 +61,13 @@ app.get('/api/descriptions/:name', function(req, res) {
 app.get('/api/products/', function(req, res) {
   console.log("req");
   Product.aggregate([{ $group : { _id : "$name", colors: { $push: {color: "$color",alt:"$variant"} }} }]).then(products => {
-      console.log(products);
       res.json(products);
   })
 });
-
+app.get('/api/products/:slug', function(req, res) {
+  console.log("req");
+  Product.find({'slug': req.params.slug}).then(products => {
+      res.json(products);
+  })
+});
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
