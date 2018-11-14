@@ -2,26 +2,65 @@ import React, { Component } from 'react';
 import CompleteYourSetup from "./CompleteYourSetup"; 
 import Colors from './Colors'; 
 import './LongPad.css'; 
+import store from '../store';
 
 class LongPad extends Component {
 
     constructor(props) {
         super(props);
-    
         this.state = {
-          description: {}
+          description: {},
+          product: {}
         };
+        this.addVariantToCart = this.addVariantToCart.bind(this);
+      }
+
+      handleOptionChange(event) {
+        const target = event.target
+        let selectedOptions = this.state.selectedOptions;
+        selectedOptions[target.name] = target.value;
+    
+        const selectedVariant = this.props.client.product.helpers.variantForOptions(this.props.product, selectedOptions)
+    
+        this.setState({
+          selectedVariant: selectedVariant
+        });
+      }
+
+      addVariantToCart(variantId, quantity) {
+        const state = store.getState(); // state from redux store
+        state.client.product.fetchAll().then((products) => {
+            // Do something with the products
+products.forEach((product)=>{ 
+    if (product.handle === "long-pad-" + this.props.match.params.name){ 
+       
+        const lineItemsToAdd = [{"variantId":product.variants[0].id, quantity: parseInt(quantity, 10)}]
+        const checkoutId = state.checkout.id
+        console.log(checkoutId);
+        state.client.checkout.addLineItems(checkoutId, lineItemsToAdd).then(res => {
+          store.dispatch({type: 'ADD_VARIANT_TO_CART', payload: {isCartOpen: true, checkout: res}});
+        })
+    }
+});            
+
+          });
       }
 
     componentDidMount() {
 
-        fetch('http://localhost:4000/api/descriptions/long-pad')
+        fetch('http://localhost:4000/api/descriptions/castor')
             .then(response => response.json())
             .then(json => {
-                console.log(json.descriptions[0]);
                 this.setState({description: json.descriptions[0]})
-            })
-        }
+            });  
+            console.log('http://localhost:4000/api/products/long-pad-' + this.props.match.params.name);
+            fetch('http://localhost:4000/api/products/long-pad-' + this.props.match.params.name)
+            .then(response => response.json())
+            .then(json => {
+                console.log(json);
+                this.setState({product: json[0]})
+            });     
+    }
 
     render() {
 
@@ -39,6 +78,8 @@ class LongPad extends Component {
                 <img src={header} className="productHeader" alt="Desk pad"></img>
 
                     <div className="container"> 
+
+                    <button className="buy-shopify" onClick={() => this.addVariantToCart(this.state.product.shopifyID, 1)}>Add to Cart</button>
 
                         <div className="pure-g">
                             <div className="pure-u-md-1-2 pure-u-1 theProduct">
