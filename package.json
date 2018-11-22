@@ -1,0 +1,31 @@
+{
+  "name": "mionix-react",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@shopify/buy-button-js": "^0.8.6",
+    "express": "^4.16.4",
+    "graphql": "^14.0.2",
+    "graphql-tag": "^2.10.0",
+    "mongoose": "^5.3.3",
+    "npm-install-all": "^1.1.21",
+    "react": "^16.5.1",
+    "react-apollo": "^2.2.4",
+    "react-burger-menu": "^2.5.4",
+    "react-cookie": "^3.0.4",
+    "react-dom": "^16.5.1",
+    "react-redux": "^5.1.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.1.5",
+    "react-slick": "^0.23.1",
+    "redux": "^4.0.1",
+    "shopify-buy": "^1.9.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "proxy": "http://localhost:4000"
+}
