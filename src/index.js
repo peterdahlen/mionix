@@ -10,7 +10,7 @@ import './components/shopify/Shopify.css';
 
 const client = Client.buildClient({
 domain: 'mionixstore.myshopify.com',
-storefrontAccessToken: '630a0de1457c0f7bdfab87c6b3e55c61'
+storefrontAccessToken: //------//
   });
   store.dispatch({type: 'CLIENT_CREATED', payload: client});
 
